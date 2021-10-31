@@ -1,0 +1,136 @@
+# REACT
+  npx create-react-app . - установить в этой папке<br>
+  https://create-react-app.dev/docs/getting-started/<br>
+  добавить .gitignore, .prettierrc.json/yaml<br>
+  
+  установить готовый проект, установить зависимости с него
+  npm i
+  ------------------------------------------------------------------------<br>
+# Настройка pre-commit хуков
+
+## 1 - Установка зависимостей
+
+Установить в проект следующие пакеты. Добавить как зависимость разработки<br>    
+```bash
+  npm install --save-dev prettier husky lint-staged eslint
+  
+  eslint- не ставиться новые версии, нужна старая 
+  "eslint": "^7.32.0",
+```
+  
+Добавить файлы в корень проекта:<br>
+
+.prettierrc.yaml (   
+printWidth: 80
+tabWidth: 2
+useTabs: false
+semi: true
+singleQuote: true
+trailingComma: all
+bracketSpacing: true
+jsxBracketSameLine: false
+arrowParens: avoid
+proseWrap: always
+)<br>
+
+.huskyrc ({
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+})<br>
+
+.lintstagedrc ({
+  "src/**/*.{json,css,scss,md}": ["prettier --write"],
+  "src/**/*.{js,jsx,ts,tsx}": ["prettier --write", "eslint --fix"]
+})<br>
+
+## 2 - Инициализация lint-staged и husky
+
+Пользователям **MacOS** и **Linux** систем необходимо выполнить в терминале
+следующую команду. Она установит и настроит `husky` и `lint-staged` в
+зависимости от инструментов качества кода из зависимостей проекта в
+`package.json`.
+
+```bash
+npx mrm lint-staged
+```
+
+Пользователям **Windows** необходимо выполнить следующую команду. Она делает
+тоже самое.
+
+```bash
+npx mrm@2 lint-staged
+```
+
+исправить в package.json
+  "lint-staged": {
+    "*.{js,jsx}": "eslint --cache --fix",
+    "*.{js,css,jsx,scss,md}": "prettier --write"
+  }
+
+## 3 - Интерграция плагинов
+
+Ссылки на документацию по интеграции плагинов в популярные редакторы.
+
+- [Prettier editor integration](https://prettier.io/docs/en/editors.html)
+- [ESLint editor integration](https://eslint.org/docs/user-guide/integrations)
+
+## 4 - Настройки VSCode
+
+Для комфортной работы, после установки плагинов, нужно добавить несколько
+настроек редактора для автосохранения и форматирования файлов.
+
+```json
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
+```
+  ## 5 - Absolute Imports (import Button from 'components/Button';)<br> 
+  
+добавить файл jsconfig.json ({
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["src"]
+})<br> 
+  ------------------------------------------------------------------------<br> 
+# Установить пакет prop-types в проект<br>
+https://www.npmjs.com/package/prop-types<br>
+
+npm i prop-types<br>
+------------------------------------------------------------------------<br> 
+# Установить нормализцаию в проект<br> 
+-либо в index.css прописать вверху файла @import-normalize;<br> 
+https://create-react-app.dev/docs/adding-css-reset/<br> 
+  
+-либо поставить пакет npm install modern-normalize<br> 
+в index.js import 'node_modules/modern-normalize/modern-normalize.css'; (первую часть node_modules нужно удалить из импорта, те нужно вставить import 'modern-normalize/modern-normalize.css';)<br>
+https://github.com/sindresorhus/modern-normalize
+------------------------------------------------------------------------<br> 
+# SASS<br> 
+https://create-react-app.dev/docs/adding-a-sass-stylesheet/<br> 
+https://www.npmjs.com/package/node-sass
+------------------------------------------------------------------------<br> 
+# В конце для деплоя ни гитхаб<br> 
+
+1. https://create-react-app.dev/docs/deployment#github-pages<br> 
+в package.json  - "homepage": "https://irynakarmazinova.github.io/goit-react-hw-01-components",<br> 
+
+2. установить gh-pages<br> 
+npm install --save gh-pages<br> 
+добавить в скрипты (      "predeploy": "npm run build",
+    "deploy": "gh-pages -d build")<br> 
+------------------------------------------------------------------------<br> 
+# classNames<br> 
+https://www.npmjs.com/package/classnames<br> 
+
+npm install classnames
+var classNames = require('classnames');
+------------------------------------------------------------------------<br> 
+https://www.npmjs.com/package/react-router-dom
+
+https://www.npmjs.com/package/slugify

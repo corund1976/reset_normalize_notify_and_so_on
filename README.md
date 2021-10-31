@@ -1,1 +1,2 @@
-# reset_normalize_notify_and_so_on
+# base-info
+базовые настройки/сбросы в css
